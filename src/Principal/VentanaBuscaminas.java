@@ -100,12 +100,12 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
             miBoton.setText("?");
         }
         else{
-            //si es una bomba --> explota y se acaba la partida
+            //si es una bomba --> explota y se acaba la partida. Ademas ocurren cosas típicas de una explosion.
             if(miBoton.bomba == 1){
                  for (int i=0; i< filas; i++){
                     for (int j=0; j< columnas; j++){
                         
-                        if(miBoton.bomba == 1){
+                        if(arrayBotones[i][j].bomba == 1){
                             arrayBotones[i][j].setText("boom");
                         }else{
                             arrayBotones[i][j].setEnabled(false);
@@ -114,6 +114,8 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            
             //declaro un arraylist para ir guardando la lista de botones
             //que tengo que verificar
             ArrayList <Boton> listaDeCasillasAMirar = new ArrayList();
