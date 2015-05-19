@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author Jorge Cisneros
+ * @author Yoel Cano
  */
 public class VentanaBuscaminas extends javax.swing.JFrame {
 
@@ -19,6 +19,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
     int filas = 20;
     int columnas = 30;
     int numMinas = 59;
+    int casillaBomba = 0;
     
     Boton [][] arrayBotones = new Boton[filas][columnas];
 
@@ -28,7 +29,8 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
        int c = r.nextInt(columnas);
        
        arrayBotones[f][c].bomba = 1;
-       arrayBotones[f][c].setText("B");
+       arrayBotones[f][c].setText("");
+       
     }
     
     //cuentaminas realiza un paso previo que consiste en contar para cada celda
@@ -51,7 +53,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 minas = 0;
                 if ((arrayBotones[i][j].numeroMinasAlrededor > 0) &&
                     (arrayBotones[i][j].bomba == 0)){
-                    arrayBotones[i][j].setText(String.valueOf(arrayBotones[i][j].numeroMinasAlrededor));
+                    //arrayBotones[i][j].setText(String.valueOf(arrayBotones[i][j].numeroMinasAlrededor));
                 }
             }
         }
@@ -99,7 +101,15 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
         }
         else{
             //si es una bomba --> explota y se acaba la partida
-            
+            if(miBoton.bomba == 1){
+                
+                for (int i=0; i< filas; i++){
+                    for (int j=0; j< columnas; j++){
+                        arrayBotones[i][j].setText("boom");
+                        arrayBotones[i][j].setEnabled(false);
+                    }
+                }
+            }
             //declaro un arraylist para ir guardando la lista de botones
             //que tengo que verificar
             ArrayList <Boton> listaDeCasillasAMirar = new ArrayList();
@@ -128,7 +138,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 listaDeCasillasAMirar.remove(b);
             }
             //si no, verificamos la casilla 
-            miBoton.setText("0");
+            miBoton.setText("");
         }
         
     }
