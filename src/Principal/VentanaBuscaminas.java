@@ -18,7 +18,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
     //una pantalla con botones
     int filas = 20;
     int columnas = 30;
-    int numMinas = 59;
+    int numMinas = 30;
     int casillaBomba = 0;
     
     Boton [][] arrayBotones = new Boton[filas][columnas];
@@ -102,11 +102,15 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
         else{
             //si es una bomba --> explota y se acaba la partida
             if(miBoton.bomba == 1){
-                
-                for (int i=0; i< filas; i++){
+                 for (int i=0; i< filas; i++){
                     for (int j=0; j< columnas; j++){
-                        arrayBotones[i][j].setText("boom");
-                        arrayBotones[i][j].setEnabled(false);
+                        
+                        if(miBoton.bomba == 1){
+                            arrayBotones[i][j].setText("boom");
+                        }else{
+                            arrayBotones[i][j].setEnabled(false);
+                        }
+                        
                     }
                 }
             }
